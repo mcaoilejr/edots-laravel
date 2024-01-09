@@ -8,7 +8,7 @@
         <title>eDOTS SDO Kidapawan City</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <link href="{{asset('css/style.css')}}" rel="stylesheet">
+        <link href="{{asset('public/css/style.css')}}" rel="stylesheet">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">

@@ -56,7 +56,7 @@
                   <td>{{ $document->documenttype_id }}</td>
                   @if(Auth::user()->type!='admin')<td>{{ $document->status }}</td>@endif
                   <td>
-                    <a href="/document/{{$document->id}}/view" class="text-primary"  target="_blank">Details</a>
+                    <a href={{url("/document/$document->id/view")}} class="text-primary"  target="_blank">Details</a>
                     @if(Auth::user()->type!='admin' && $document->forwardedto==0) | 
                       <a href="#" class="text-danger" wire:click="delete({{ $document->id }})" >Cancel</a>
                     @elseif (Auth::user()->type!='admin' && $document->forwardedto>0)
