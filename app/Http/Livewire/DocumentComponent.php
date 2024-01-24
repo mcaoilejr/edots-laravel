@@ -166,6 +166,7 @@ class DocumentComponent extends Component
                 ->where('status','Received')
                 ->where('receivedby','7')
                 ->orderBy('created_at','DESC')
+                ->whereYear('created_at','>',2023)
                 ->paginate(25);
           $doctype = Documenttype::orderBy('name')->get();
           return view('livewire.documents.document-component',[
@@ -177,6 +178,8 @@ class DocumentComponent extends Component
           $rec = Document::where('encodedby',$this->user_id)
                 ->where($this->criteria,'LIKE','%'.$this->search.'%')
                 ->orderBy('created_at')
+                ->orderBy('created_at','DESC')
+                ->whereYear('created_at','>',2023)
                 ->paginate(20);
           $doctype = Documenttype::orderBy('name')->get();
           return view('livewire.documents.document-component',[

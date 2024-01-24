@@ -10,7 +10,7 @@ class DocumentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
@@ -38,7 +38,8 @@ class DocumentController extends Controller
         $rec = Documenthistory::where('document_id', $id)->get();
         return view('pages.document.index',[
           'title' => $rec1->title,
-          'details' => $rec
+          'details' => $rec,
+          
         ]);
     }
 

@@ -8,6 +8,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
+          
           <div class="col-md-12">
             <select class="form-select" wire:model="action">
               <option value="forward">Forward</option>
@@ -16,13 +17,16 @@
               <option value="cancel">Cancel</option>
             </select>
           </div>
-          <div class="col-md-12 mt-3">
-            <select class="form-select" wire:model="office_id">
-              @foreach ($offices as $office)
-                <option value={{$office->id}}>{{ $office->name }}</option>
-              @endforeach
-            </select>
-          </div>
+          
+          @if($action=='forward' || $action=='receive')
+            <div class="col-md-12 mt-3">
+              <select class="form-select" wire:model="office_id">
+                @foreach ($offices as $office)
+                  <option value={{$office->id}}>{{ $office->name }}</option>
+                @endforeach
+              </select>
+            </div>
+          @endif
         </div>
       </div>
       <div class="modal-footer">

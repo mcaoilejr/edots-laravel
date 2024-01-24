@@ -3,7 +3,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <div class="div">List of Documents : Account User ID :{{ $this->user_id}}</div>
+            <div class="div">List of Documents : Office ID :{{ Auth::user()->office_id}}</div>
             @if(Auth::user()->type != 'admin')
             <div x-show="!open"><button class="btn btn-danger" x-show="!open" @click="open = true"><i class="fa fa-add me-2"></i>Add New Document</button></div>
             <div x-show="open"><button class="btn btn-danger" x-show="open" @click="open = false"><i class="fa fa-hide me-2"></i>Hide</button></div>
@@ -63,7 +63,7 @@
                       <span class="text-secondary">[Submitted]</span>
                     @endif
                     @if(Auth::user()->type=='admin')| <a href="#" class="text-danger" wire:click.prevent="selectDocument({{$document->id}})" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Process</a> @endif
-                   
+                    @if(Auth::user()->type=='admin')| <a target="_blank" href="http://localhost/edots-laravel/qr/{{ $document->id }}" class="text-secondary" >Print QR</a> @endif                  
                   </td>
                 </tr>
                 @endforeach

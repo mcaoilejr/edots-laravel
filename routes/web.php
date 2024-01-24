@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Document;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/qr', function () {
-    return view('qr',["link"=>"TEST"]);
+Route::get('/qr/{id}', function ($id) {
+    if (!auth()->check()) {
+        return view('invalid');
+    }
+    $rec = Document::find($id);
+    return view('qr',[
+        "link"=>"http://localhost/edots-laravel/document/". $id ."/view",
+        'title'=> $rec->title,
+        'date'=> $rec->created_at,
+        'type'=> $rec->documenttype_id,
+    ]);
 });
 
 Auth::routes();
