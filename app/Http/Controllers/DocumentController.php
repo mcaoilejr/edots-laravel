@@ -35,7 +35,7 @@ class DocumentController extends Controller
     {
         
         $rec1 = Document::where('id', $id)->first();
-        $rec = Documenthistory::where('document_id', $id)->get();
+        $rec = Documenthistory::where('document_id', $id)->orderBy('created_at','DESC')->get();
         return view('pages.document.index',[
           'title' => $rec1->title,
           'details' => $rec,

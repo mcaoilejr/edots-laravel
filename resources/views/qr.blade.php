@@ -21,7 +21,13 @@
         </div>
     </div>
 
-    <div class="row px-5">
+    <div class="row mt-1">
+        <div class="col-md-12 text-center text-success" >
+                <span class="h4 text-center">SDO Kidapawan City Electronic Document Tracking System</span>
+        </div>
+    </div>
+
+    <div class="row px-5 mt-5">
         <div class="col-md-12">
             <table width="100%">
                 <tr>
@@ -32,6 +38,7 @@
                         <h4>{{$title}}</h4>
                         <p>Date Encoded: {{$date}}</p>
                         <p>Document Type: {{$type}}</p>
+                        <p>Document Code: <span class="h4">{{$code}}</span class="h3"></p>
                     </td>
                     <td style="vertical-align: top;">
                         Date: {{Carbon\Carbon::now()->format('M d, Y')}}

@@ -10,7 +10,8 @@ use Livewire\WithPagination;
 use App\Models\Documenthistory;
 use Illuminate\Support\Facades\Auth;
 
-class DocumentComponent extends Component
+
+class ReceiveComponent extends Component
 {
     use WithPagination;
 
@@ -127,15 +128,15 @@ class DocumentComponent extends Component
         $doc->encodedby = Auth::user()->id;
         $doc->forwardedto = 7;
         $doc->receivedby = 7;
-        $doc->status = 'Received';
+        $doc->status = 'Forwarded';
         $doc->save();
         
         $doc = Document::where('documentcode',$documentcode)->get();
         $history = new Documenthistory();
         $history->document_id = $doc[0]->id;
-        $history->user_id=7;
-        $history->action = 'Forwarded';
-        $history->remarks = $this->title.' submitted to records section.';
+        $history->user_id=Auth::user()->id;
+        $history->action = 'Encoded Online.';
+        $history->remarks = $this->title.' encoded to SDO Document Tracking System.';
         $history->save();
         
         session()->flash('message', 'Successfully submitted!');
@@ -169,19 +170,20 @@ class DocumentComponent extends Component
                 ->whereYear('created_at','>',2023)
                 ->paginate(25);
           $doctype = Documenttype::orderBy('name')->get();
-          return view('livewire.documents.document-component',[
+          return view('livewire.receive-component',[
                       'documents' => $rec,
                       'doctypes' => $doctype,
                       'offices' => $offices
           ]);
         }else{
+           
           $rec = Document::where('encodedby',$this->user_id)
                 ->where($this->criteria,'LIKE','%'.$this->search.'%')
+                ->orderBy('created_at','DESC')
                 ->whereYear('created_at','>',2023)
-                ->orderBy('created_at','ASC')
                 ->paginate(20);
           $doctype = Documenttype::orderBy('name')->get();
-          return view('livewire.documents.document-component',[
+          return view('livewire.receive-component',[
                       'documents' => $rec,
                       'doctypes' => $doctype,
                       'offices' => $offices

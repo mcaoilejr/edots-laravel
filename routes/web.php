@@ -24,10 +24,11 @@ Route::get('/qr/{id}', function ($id) {
     }
     $rec = Document::find($id);
     return view('qr',[
-        "link"=>"http://localhost/edots-laravel/document/". $id ."/view",
+        "link"=>"http://192.168.88.251/edots-laravel/document/". $id ."/view",
         'title'=> $rec->title,
         'date'=> $rec->created_at,
         'type'=> $rec->documenttype_id,
+        'code'=> $rec->documentcode,
     ]);
 });
 

@@ -13,8 +13,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <livewire:document-component />
+                    @if(Auth::user()->type=='user')
+                        <livewire:receive-component />
+                    @endif
+                    @if(Auth::user()->type=='office')
+                        <livewire:management-component />
+                    @endif
+                    @if(Auth::user()->type=='admin')
+                        <livewire:receive-component />
+                    @endif
                 </div>
             </div>
         </div>
