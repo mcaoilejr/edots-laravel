@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'app_url' => "http://192.168.88.251/edots-laravel",
+    'app_url' => "https://edots.depedkidapawancity.net/",
 
     /*
     |--------------------------------------------------------------------------
